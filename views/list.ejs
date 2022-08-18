@@ -17,7 +17,7 @@
       -->
       <% list.forEach(function(item,idx){ %>
       <!-- <li><a href="/detail/1"><%= item.subject %></a></li> -->
-      <li><a href="/detail/<%= item.no %>"><%= item.subject %></a></li>
+      <li><span><%=idx+1%></span><a href="/detail/<%= item.no %>"><%= item.subject %></a></li>
       <% }) %>
     </ul>
   </body>

@@ -2,6 +2,10 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv").config();
+const cors = require("cors");
+app.set("port", process.env.PORT || 8099);
+const PORT = app.get("port");
+app.use(cors());
 // mongodb관련 모듈
 const MongoClient = require("mongodb").MongoClient;
 
@@ -56,7 +60,8 @@ app.get("/list", (req, res) => {
     .toArray((err, result) => {
       console.log(result);
       //res.send(); res.json();res.sendFile();
-      res.render("list", { list: result, title: "테스트용입니다." }); //   페이지 내가 만들어서 보내주기
+      //res.render("list", { list: result, title: "테스트용입니다." }); //   페이지 내가 만들어서 보내주기
+      res.json(result);
     });
 });
 app.get("/detail/:no", (req, res) => {
@@ -73,6 +78,6 @@ app.get("/detail/:no", (req, res) => {
   });
   //res.render("detail");
 });
-app.listen(8099, () => {
-  console.log("8099에서 서버 대기중");
+app.listen(PORT, () => {
+  console.log(`${PORT}8099에서 서버 대기중`);
 });
