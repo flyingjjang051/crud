@@ -16,6 +16,7 @@ MongoClient.connect(process.env.MONGO_URL, { useUnifiedTopology: true }, (err, c
     console.log(err);
   }
   db = client.db("crudapp");
+  console.log(db);
 });
 app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
@@ -79,5 +80,5 @@ app.get("/detail/:no", (req, res) => {
   //res.render("detail");
 });
 app.listen(PORT, () => {
-  console.log(`${PORT}8099에서 서버 대기중`);
+  console.log(`${PORT}에서 서버 대기중`);
 });
