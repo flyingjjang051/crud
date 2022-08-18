@@ -11,12 +11,13 @@ const MongoClient = require("mongodb").MongoClient;
 
 let db = null;
 MongoClient.connect(process.env.MONGO_URL, { useUnifiedTopology: true }, (err, client) => {
-  console.log("연결");
+  console.log("db 연결");
   if (err) {
     console.log(err);
+  } else {
+    console.log("crud app 연결");
   }
   db = client.db("crudapp");
-  console.log(db);
 });
 app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
@@ -45,7 +46,8 @@ app.post("/add", (req, res) => {
           console.log(err);
         }
         //console.log("잘 들어갔음");
-        res.send(`<script>alert("글이 입력되었습니다."); location.href="/list"</script>`);
+        //res.send(`<script>alert("글이 입력되었습니다."); location.href="/list"</script>`);
+        res.send("aaa");
       });
     });
   });
@@ -61,8 +63,8 @@ app.get("/list", (req, res) => {
     .toArray((err, result) => {
       console.log(result);
       //res.send(); res.json();res.sendFile();
-      res.render("list", { list: result, title: "테스트용입니다." }); //   페이지 내가 만들어서 보내주기
-      //res.json(result);
+      //res.render("list", { list: result, title: "테스트용입니다." }); //   페이지 내가 만들어서 보내주기
+      res.json(result);
     });
 });
 app.get("/detail/:no", (req, res) => {
