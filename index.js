@@ -63,8 +63,8 @@ app.get("/list", (req, res) => {
     .toArray((err, result) => {
       console.log(result);
       //res.send(); res.json();res.sendFile();
-      //res.render("list", { list: result, title: "테스트용입니다." }); //   페이지 내가 만들어서 보내주기
-      res.json(result);
+      res.render("list", { list: result, title: "테스트용입니다." }); //   페이지 내가 만들어서 보내주기
+      //res.json(result);
     });
 });
 app.get("/detail/:no", (req, res) => {
